@@ -1,14 +1,13 @@
 # Get mysql up and running
 class mysql {
 
-    package { "mysql-server":
-        ensure => installed;
+    # Install required mysql packages.
+    package {
+        ["mysql-server", "mysql-devel"]:
+            ensure => installed;
     }
 
-    package { "mysql-devel":
-        ensure => installed;
-    }
-
+    # Start the mysqld service.
     service { "mysqld":
         ensure => running,
         enable => true,

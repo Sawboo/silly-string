@@ -26,24 +26,22 @@ Vagrant::Config.run do |config|
         config.vm.boot_mode = :gui
     end
 
-    # Increase vagrant's patience during hang-y CentOS bootup
-    # see: https://github.com/jedi4ever/veewee/issues/14
+    # The inital package update can take a long time,
+    # increase vagrant's patience for long CentOS builds.
     config.ssh.max_tries = 50
-    config.ssh.timeout   = 300
+    config.ssh.timeout   = 600
 
-    # nfs needs to be explicitly enabled to run.
+    # Setup a shared folder with the host.
     if CONF['nfs'] == false or RUBY_PLATFORM =~ /mswin(32|64)/
         config.vm.share_folder("vagrant-root", MOUNT_POINT, ".")
     else
         config.vm.share_folder("vagrant-root", MOUNT_POINT, ".", :nfs => true)
     end
 
+    # Foward port 8000 to the host machine on port 8888.
     config.vm.forward_port 8000, 8888
 
-    # config.vm.share_folder "v-data", "/vagrant_data", "./"
-
-    # config.vm.provision :shell, :path => "bootstrap.sh"
-
+    # Provision the server with Puppet.
     config.vm.provision :puppet do |puppet|
         puppet.manifests_path = "puppet/manifests"
         puppet.module_path = "puppet/modules"
@@ -53,6 +51,7 @@ Vagrant::Config.run do |config|
             puppet.options = "--verbose --debug"
         end
 
+        # Pass options from vagrantconfig_local.yaml
         puppet.facter = [
             ['username', CONF['username']],
             ['password', CONF['password']],

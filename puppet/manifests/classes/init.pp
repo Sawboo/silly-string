@@ -4,7 +4,19 @@ class init {
         ensure => "present",
     }
 
+    # Update the system packages.
     exec { "yum_update":
         command => "yum update -y",
+    }
+
+    # disable the firewall on restart.
+    exec { "disable_iptables":
+        command => "sudo chkconfig iptables off",
+        before => Service["iptables"],
+    }
+
+    # Stop the firewall.
+    service { "iptables":
+        ensure => stopped,
     }
 }

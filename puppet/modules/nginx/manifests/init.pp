@@ -1,11 +1,13 @@
 # This class gets a basic nginx installation up and running
 class nginx($server_name, $project_path) {
 
+    # Make sure apache is not running.
     service { "httpd":
         ensure => stopped,
         before => Package['nginx'],
     }
 
+    # Install and start nginx.
     package { "nginx":
         ensure => installed,
     }
@@ -17,6 +19,7 @@ class nginx($server_name, $project_path) {
         require => Package['nginx']
     }
 
+    # Create a virtual host for the development server.
     file { "/etc/nginx/conf.d/virtual.conf":
         path => "/etc/nginx/conf.d/virtual.conf",
         mode => 0644,
@@ -37,7 +40,7 @@ class nginx($server_name, $project_path) {
         require => Package["nginx"],
         notify => Service["nginx"],
         content => template("nginx/mime.types"),
-      }
+    }
 
     exec {"restart-nginx":
         command => "/etc/init.d/nginx restart",
