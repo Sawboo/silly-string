@@ -4,7 +4,7 @@ class init {
         ensure => "present",
     }
 
-    # Update the system packages.
+    Update the system packages.
     exec { "yum_update":
         command => "yum update -y",
     }

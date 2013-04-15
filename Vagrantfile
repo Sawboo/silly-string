@@ -18,7 +18,7 @@ PROJECT_NAME = 'testbox-project'
 
 Vagrant::Config.run do |config|
     config.vm.box = "centos64"
-    # config.vm.box_url = "D:/Chadwick/centos64.box"
+    # config.vm.box_url = "http://dl.dropboxusercontent.com/s/d2yb1bc84lbebdz/centos64.box?dl=1"
 
     # config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 
@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
     # The inital package update can take a long time,
     # increase vagrant's patience for long CentOS builds.
     config.ssh.max_tries = 50
-    config.ssh.timeout   = 600
+    config.ssh.timeout   = 500
 
     # Setup a shared folder with the host.
     if CONF['nfs'] == false or RUBY_PLATFORM =~ /mswin(32|64)/
@@ -53,8 +53,8 @@ Vagrant::Config.run do |config|
 
         # Pass options from vagrantconfig_local.yaml
         puppet.facter = [
-            ['username', CONF['username']],
-            ['password', CONF['password']],
+            ['db_user', CONF['db_user']],
+            ['db_pass', CONF['db_pass']],
             ['project_path', MOUNT_POINT],
             ['project_name', PROJECT_NAME],
             ['server_name', CONF['server_name']],

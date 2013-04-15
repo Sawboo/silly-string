@@ -7,6 +7,7 @@ nfs: false
 gui: false
 server_name: local.testbox
 # Used for the root mysql password
-password: root
+db_user: vagrant
+db_pass: vagrant
 # Turns on Vagrant debug flags, useful if you have issues with puppet
 debug: false
