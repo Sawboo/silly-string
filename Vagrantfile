@@ -14,7 +14,6 @@ end
 
 CONF = _config
 MOUNT_POINT = '/vagrant'
-PROJECT_NAME = 'testbox-project'
 
 Vagrant::Config.run do |config|
     config.vm.box = "centos64"
@@ -56,7 +55,6 @@ Vagrant::Config.run do |config|
             ['db_user', CONF['db_user']],
             ['db_pass', CONF['db_pass']],
             ['project_path', MOUNT_POINT],
-            ['project_name', PROJECT_NAME],
             ['server_name', CONF['server_name']],
         ]
     end

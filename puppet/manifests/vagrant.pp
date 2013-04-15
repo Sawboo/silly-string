@@ -32,7 +32,7 @@ class dev {
     #     require => Class[mysql];
     # }
 
-    mysql::db { 'dev_db':
+    mysql::db { 'development':
         db_user => $db_user,
         db_pass => $db_pass,
         require => Class[mysql];
