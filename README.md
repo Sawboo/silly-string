@@ -15,7 +15,7 @@ Getting Started
 First start by cloning the silly-string repo to a new directory for your development virtual machine.
 
     mkdir testbox
-    git clone https://github.com/mozilla/playdoh.git ./testbox
+    git clone https://github.com/Sawboo/silly-string.git ./testbox
 
 Almost all of the configuration can be done from ``vagrantconfig_local.yaml``
 
