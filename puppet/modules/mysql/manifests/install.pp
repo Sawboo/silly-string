@@ -1,7 +1,7 @@
 class mysql::install {
 
     # Required mysql packages.
-    $packages = ["mysql-server", "mysql-devel"]
+    $packages = ["mysql-server", "mysql-devel", "mysql"]
 
     package { $packages:
         ensure => installed,

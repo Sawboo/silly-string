@@ -6,7 +6,7 @@ class init {
 
     # Update the system packages.
     exec { "yum_update":
-        command => "yum update -y",
+       command => "yum update -y",
     }
 
     # Disable the firewall on restart.

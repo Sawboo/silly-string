@@ -28,7 +28,7 @@ Vagrant::Config.run do |config|
     # The inital package update can take a long time,
     # increase vagrant's patience for long CentOS builds.
     config.ssh.max_tries = 50
-    config.ssh.timeout   = 500
+    config.ssh.timeout   = 1200
 
     # Setup a shared folder with the host.
     if CONF['nfs'] == false or RUBY_PLATFORM =~ /mswin(32|64)/
