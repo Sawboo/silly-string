@@ -32,9 +32,11 @@ To create the virtual machine, simply run: ``vagrant up``
 Other Notes
 ----
 
-Create virtual enviroments and start Django projects in: ``/vagrant/sites``
+By default, silly-string runs ``yum update -y`` to update all of the system packages when being provisioned. As the base-box gets older, this process will take longer and longer, possibly causing a timeout error. You can increase the amount of time vagrant will wait in ``Vagrantfile`` or you can comment the update lines out.
 
-To access the Django development server from the host machine, run the command:
+Create virtual enviroments and start projects in: ``/vagrant/sites`` so they can be accessed from the host machine.
+
+To access a Django development server from the host machine, run the command (in the vm):
 
     python manange.py runserver 0.0.0.0:8000
 
