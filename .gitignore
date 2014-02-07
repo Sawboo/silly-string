@@ -1,5 +1,6 @@
 .vagrant/
 sites/
+*.box
 
 *.gem
 *.rbc

@@ -16,8 +16,8 @@ CONF = _config
 MOUNT_POINT = '/vagrant'
 
 Vagrant::Config.run do |config|
-    config.vm.box = "centos64"
-    # config.vm.box_url = "http://dl.dropboxusercontent.com/s/d2yb1bc84lbebdz/centos64.box?dl=1"
+    config.vm.box = "centos64-x64"
+    config.vm.box_url = "F:/home/chadwick/Dropbox/Vagrant/centos64-x64.box"
 
     # config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 
@@ -25,7 +25,7 @@ Vagrant::Config.run do |config|
         config.vm.boot_mode = :gui
     end
 
-    # The inital package update can take a long time,
+    # The inital yum update can take a long time,
     # increase vagrant's patience for long CentOS builds.
     config.ssh.max_tries = 50
     config.ssh.timeout   = 1200

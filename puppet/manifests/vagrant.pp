@@ -38,6 +38,13 @@ class dev {
         require => Class[mysql];
     }
 
+    # Import timezone info using mysql_tzinfo_to_sql so
+    # we can store time-zone-aware datetime objects from Django.
+    exec { 'mysql_tzinfo':
+        require => Class[mysql],
+        command => 'mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -pvagrant mysql';
+    }
+
     class { "python":
         require => Class[mysql];
     }
